@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:22-alpine
 
 WORKDIR /app
 
@@ -6,8 +6,8 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 
-# Copy source code
-COPY . .
+COPY tsconfig.json ./
+COPY src/ ./src/
 
 # Build TypeScript
 RUN npm run build
@@ -16,4 +16,4 @@ RUN npm run build
 EXPOSE 3001
 
 # Start the application
-CMD ["npm", "run", "dev"] 
+CMD ["npm", "start"] 
